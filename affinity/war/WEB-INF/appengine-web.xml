@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0" >
+    <application>zodiacmeter</application>
+    <version>1</version>
+<!-- Allows App Engine to send multiple requests to one instance in parallel: -->
+    <threadsafe>true</threadsafe>
+    <!-- Configure java.util.logging -->
+    <system-properties>
+        <property
+            name="java.util.logging.config.file"
+            value="WEB-INF/logging.properties" />
+    </system-properties>
+    <sessions-enabled>true</sessions-enabled>
+    
+    <async-session-persistence enabled="true" />
+    
+    <static-files>
+		<include path="/tooltips/**.jpg" />
+        <include path="/js/**.js" />
+        <include path="/js/**.png" />
+        <include path="/js/**.gif" />
+        <include path="/js/**.css" />
+        <include path="/css/**.css" />
+        		
+        <include path="/images/**.jpg" />
+        <include path="/images/**.png" />
+        <include path="/images/**.gif" />
+        <include path="/images/large/**.jpg" />
+        <include path="/images/large/**.png" />
+        <include path="/images/large/**.gif" />
+        <include path="/images/small/**.jpg" />
+        <include path="/images/small/**.png" />
+        <include path="/images/small/**.gif" />
+        
+        <include path="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" expiration="99d"/>
+        <include path="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" expiration="99d"/>
+        <include path="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" expiration="99d"/>
+        <include path="https://code.jquery.com/jquery-1.6.min.js" expiration="99d"/>
+        
+        <include path="/*.html" />
+    </static-files>
+</appengine-web-app>

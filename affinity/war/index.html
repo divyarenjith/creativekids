@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Affinity - Check affinity with your friends</title>
+<link rel="stylesheet" type="text/css" href="js/style.css" />
+<link rel="stylesheet" href="css/reveal.css" />
+
+<link rel="shortcut icon" href="/images/affinity_fav_ico.png" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/log4javascript.js"></script>
+<script type="text/javascript">
+	//var log = log4javascript.getDefaultLogger();
+</script>
+
+<script type="text/javascript" src="js/jquery.reveal.js"></script>
+
+</head>
+
+<body style="background-color: transparent">
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=159277490876183";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<div style="padding-top: 10px; margin: 0px auto; width: 800px">
+		<div id="logo" style="float: left">
+			<img src="images/thumbnails/affinity_logo2.png" />
+		</div>
+
+		<div id="affinity" style="float: right; padding-top: 75px;">
+			<!-- 
+			<div id="fb_login" class="fb-login-button" data-width="200px" data-height="20px" data-max-rows="1" data-show-faces="true"></div>
+			 -->
+
+			<a id="affinity_check" onclick="javascript:proceedtoCheck();"
+				class="button coolblue"> Proceed to Affinity </a>
+		</div>
+	</div>
+
+	<div id="like" style="float: right; margin: 0px auto;">
+		<div id="fb_login_plugin" class="fb-login-button" data-width="350px"
+				data-height="20px" data-max-rows="1" data-show-faces="true"></div>
+
+		<div id="fb_like_plugin" class="fb-like"
+				data-href="https://zodiacmeter.appspot.com/" data-width="350px"
+				data-height="100" data-colorscheme="light" data-layout="standard"
+				data-action="like" data-show-faces="true" data-send="false"></div>
+	</div>
+
+	<div id="wowslider-container1">
+		<div class="ws_images">
+			<ul>
+				<li><img src="images/aries_aquarius.jpg" alt="Aries & Aquarius"
+					title="Aries & Aquarius" id="wows1_0" />We are heroic and
+					adventurous!</li>
+			</ul>
+		</div>
+		<div class="ws_thumbs">
+			<div>
+				<a href="images/aries_aquarius.jpg" title="Aries & Aquarius"> <img
+					src="tooltips/aries_aquarius.jpg" alt="" />
+				</a> <a href="images/gemini_capricorn.jpg" title="Gemin & Capricorn">
+					<img src="tooltips/gemini_capricorn.jpg" alt="" />
+				</a> <a href="images/leo_sagitarius.jpg" title="Leo & Sagitarius"> <img
+					src="tooltips/leo_sagitarius.jpg" alt="" />
+				</a> <a href="images/pisces_libra.jpg" title="Pisces & Libra"> <img
+					src="tooltips/pisces_libra.jpg" alt="" />
+				</a> <a href="images/scorpio_taurus.jpg" title="Scorpio & Taurus"> <img
+					src="tooltips/scorpio_taurus.jpg" alt="" />
+				</a> <a href="images/virgo_cancer.jpg" title="Virgo & Cancer"> <img
+					src="tooltips/virgo_cancer.jpg" alt="" />
+				</a>
+			</div>
+		</div>
+		<div class="ws_shadow"></div>
+	</div>
+
+	<div id="affinity_intro" class="reveal-modal medium">
+		<div id="intro text">
+			<div id="logo_top" style="float: left;">
+				<img src="images/affinity_icon.png" />
+			</div>
+			<div id="foreword"
+				style="font-family: Calibri; padding-top: 65px; font-size: 14px; text-align: center;">
+				Do you believe in Sun signs and its influence on human traits? May
+				be yes or no.. <br />
+				<br /> Seeing is believing. Affinity is a systematic quest for truth
+				and we all can see its result on a common wall. The journey begins
+				by knowing the characteristics of each other and badging people's
+				traits from the bottom of your heart through Affinity. <br />
+				<br /> <span style="color: rgb(184, 127, 9);">Please update
+					your date of birth in facebook & allow Affinity to read it to
+					determine your Sun sign.</span> <br></br> Sign in for a unique experience.
+			</div>
+			<div id="logo_top" style="float: right;">
+				<img src="images/affinity_icon.png" />
+			</div>
+		</div>
+		<a id="affinity_intro_link" class="close-reveal-modal">&#215;</a> <a
+			href="#" id="affinity_intro_launch" data-reveal-id="affinity_intro"
+			style="font-family: Calibri; font-size: 16px; color: orangered;">
+		</a>
+	</div>
+	<div style="margin-left: auto; margin-top: -70px; width: 800px">
+		<div class="fb-comments" data-href="http://zodiacmeter.appspot.com"
+			data-numposts="5" data-colorscheme="light"></div>
+	</div>
+
+	<script type="text/javascript" src="js/wowslider.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript">
+	 		function proceedtoCheck() {
+	 			//log.info("proceed to check");
+				FB.getLoginStatus(function(response) {
+				    //log.info("Invoked login status check");
+					if (response.status === 'connected') {
+						//log.info("User connected to FB.");
+						window.location = 'home.html';
+						return ;
+					} else if (response.status === 'not_authorized' || response.status === 'unknown') {
+						//log.info("User not connected to FB, trigger login");
+						// not_authorized
+			    		login();
+			    		//log.info("After login dialog");
+					    return;
+					}
+				});
+	 		}
+	 
+			function login() {
+				FB.login(function(response) {
+					if (response.authResponse) {
+						window.location = 'home.html';
+					} else {
+						// cancelled
+					}
+				}, { scope : 'user_birthday,friends_birthday,publish_stream' } );
+			}
+			
+			function fireClick(elem) {
+				if(!elem) return;
+				
+				if(document.dispatchEvent) {   // W3C
+				    var oEvent = document.createEvent( "MouseEvents" );
+				    oEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, elem);
+				    elem.dispatchEvent(oEvent);
+				} else if(document.fireEvent) {   // IE
+				    elem.click();
+				}    
+			}
+
+		    $(document).ready(function () {
+		        //log.info("document ready..");
+	    		window.fbAsyncInit = function() {
+					FB.init({
+			    		appId : '159277490876183', // App ID
+			    		channelUrl : 'https://zodiacmeter.appspot.com/channel.html', //
+			    		status : true, // check login status
+			    		cookie : true, // enable cookies to allow the server to access the
+			    		// session
+			    		oauth : true, // enable OAuth 2.0
+			    		frictionlessRequests : true,
+			    		useCachedDialogs : true,
+			    		xfbml : true
+					});
+
+					$("#fb_login_plugin").hide();
+					$("#fb_like_plugin").hide();
+
+					FB.getLoginStatus(function(response) {
+						if (response.status === 'connected') {
+							$("#fb_login_plugin").show();
+							$("#fb_like_plugin").hide();
+						} else if (response.status === 'not_authorized' || response.status === 'unknown') {
+							$("#fb_login_plugin").hide();
+							$("#fb_like_plugin").show();					
+						}
+					});
+				};
+				
+				var element = document.getElementById('affinity_intro_launch');
+				fireClick(element);
+		   });
+	</script>
+</body>
+</html>

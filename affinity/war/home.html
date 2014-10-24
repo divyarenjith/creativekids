@@ -1,0 +1,620 @@
+<html>
+<head>
+<title>Affinity</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="shortcut icon" href="/images/affinity_fav_ico.png" />
+<link rel="stylesheet" href="css/screen.css" />
+<link href='https://fonts.googleapis.com/css?family=Pacifico'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Tangerine" />
+<link rel="stylesheet" href="css/reveal.css" />
+<link rel="stylesheet" href="css/cssbutton.css" />
+<!-- flippy -->
+<link rel="stylesheet" href="css/demo.css" />
+<!-- end -->
+<link rel="stylesheet" href="css/bubble.css" />
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+
+<style type="text/css">
+#endorsement_notification {
+	line-height: 50px;
+	float: left;
+}
+
+#endorsement_notification :hover {
+	background-color: rgb(216, 204, 204);
+}
+
+.select {
+	width: 268px;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	height: 34px;
+	-webkit-appearance: none;
+}
+
+#tv {
+	position: relative;
+	float: right;
+	width: 50px;
+	height: 30px;
+	margin: 50px 10px;
+	background: rgb(216, 204, 204);
+	border-radius: 50%/10%;
+	color: black;
+	font-size: 20px;
+	font-weight: bolder;
+	text-align: center;
+	text-indent: .1em;
+}
+
+#badges_for_friend:hover {
+	background: rgb(184, 127, 9);
+}
+
+#sign_thumb:hover {
+	background: rgb(184, 127, 9);
+}
+
+#logout:hover {
+	background: rgb(184, 127, 9);
+}
+
+#traits_box {
+	float: left;
+	width: 66%;
+	height: 300px;
+	padding: 5px;
+	margin-right: 5px;
+	background-color: rgb(16, 34, 71);
+	border-radius: 10px;
+	color: white;
+}
+
+.traits_box.custom-state-active {
+	background: #eee;
+}
+
+.traits_box li {
+	float: left;
+	width: 160px;
+	text-align: left;
+	cursor: pointer;
+}
+
+.traits_box li h5 {
+	margin: 0 0 0.4em;
+	cursor: move;
+}
+
+.traits_box li a {
+	float: right;
+}
+
+.traits_box li a.ui-icon-zoomin {
+	float: left;
+}
+
+.traits_box li img {
+	width: 100%;
+	cursor: move;
+}
+
+#endorse_box {
+	float: left;
+	width: 30%;
+	height: 300px;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+#endorse_box h4 {
+	line-height: 16px;
+	margin: 0 0 0.4em;
+}
+
+#endorse_box h4 .ui-icon {
+	float: left;
+}
+
+#endorse_box .traits_box h5 {
+	display: none;
+}
+</style>
+<script type="text/javascript" src="js/log4javascript.js"></script>
+<script type="text/javascript">
+	var log = log4javascript.getDefaultLogger();
+</script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+	type="text/javascript"> 
+</script>
+
+<script type="text/javascript" src="js/jshashtable.js"></script>
+<script type="text/javascript" src="js/jquery.reveal.js"></script>
+<script type="text/javascript" src="js/affinity_v2.js"></script>
+
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script src="js/excanvas.min.js" type="text/javascript"></script>
+<![endif]-->
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+<script type="text/javascript" src="js/jquery.flippy.min.js"></script>
+</head>
+<body>
+	<div id="loading"></div>
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		  //log.info("ASYNC loading script");
+		  
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = d.location.protocol +"//connect.facebook.net/en_US/all.js#xfbml=1&appId=159277490876183";
+		  js.async = true;
+		  fjs.parentNode.insertBefore(js, fjs);
+		  //log.info("end - ASYNC loading");		  
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<div class="container" id="container">
+		<div class="grid" id="grid" style="display: block;">
+			<div class="header">
+				<img alt="affinity" src="images/thumbnails/affinity_logo2.png"
+					style="float: left; padding-top: 0px; padding-left: 20px;">
+				<div
+					style="float: left; margin-top: 20px; margin-left: 20px; width: 300px;">
+					<div class="fb-like" data-href="https://zodiacmeter.appspot.com/" 
+						data-width="270" data-height="100" data-colorscheme="light"
+						data-layout="standard" data-action="like" data-show-faces="true"
+						data-send="false"></div>
+				</div>
+				<div
+					style="float: right; padding: 10px 10px 10px 10px; width: 400px; height: 120px; vertical-align: top;">
+					<div id="profile" style="vertical-align: top"></div>
+
+					<div>
+						<div id="notifications" data-reveal-id="messages" title="You have received Badges on your qualities from friends"
+							style="display: none; float: right; margin-right: 5px; width: 20px; cursor: pointer;">
+							<div style="margin-left: -13px;">
+								<img src="/images/endorse.png">
+							</div>
+							<div id="notifications_count"
+								style="width: 18px; height: 18px; text-align: center; color: white; margin-top: -54px; margin-left: -7px; border-radius: 2px; background: #dc0d17; line-height: 18px; font-weight: bold;">
+								<a id="count"
+									style="color: white; font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif; font-size: 10px;"
+									href="#" data-reveal-id="messages"> </a>
+							</div>
+						</div>
+					</div>
+					<div style="float: right; width: 400px; vertical-align: top;">
+						<a href="#" class="button orange" onclick="sendRequestInvite();"
+							title="Invite your facebook friends to use Affinity">Invite
+							friends to Affinity</a> 
+						<a href="#" class="button orange" title="Check compatibility between any two facebook friends"
+							data-reveal-id="affinity_check_popup" onclick="popup();">
+							Check Affinity</a><br>
+					</div>
+				</div>
+			</div>
+
+			<div id="friendsListHolder"></div>
+
+			<!-- affinity checker window -->
+			<div id="affinity_check_popup" class="reveal-modal medium">
+				<form id="affinity_check" action="/affinity_match" method="post">
+					<input type="hidden" name="uid1"> <input type="hidden"
+						name="uid2"> <input type="hidden" name="name1"> <input
+						type="hidden" name="name2"> <input type="hidden"
+						name="pic1"> <input type="hidden" name="pic2"> <input
+						type="hidden" name="sign1"> <input type="hidden"
+						name="sign2">
+					<div
+						style="font-family: Calibri; width: 375px; float: left; padding: 5px;">
+						<h2 style="text-align: center">Affinity - between your
+							friends</h2>
+					</div>
+
+					<div style="width: 375px; height: 60px; float: left; padding: 5px;">
+						<div id="friends_combo1" style="float: left; padding-right: 30px"></div>
+						<div id="friend_pic1" style="float: left;"></div>
+					</div>
+
+					<div style="width: 375px; height: 60px; float: left; padding: 5px;">
+						<div id="friends_combo2" style="float: left; padding-right: 30px"></div>
+						<div id="friend_pic2" style="float: left;"></div>
+					</div>
+
+					<div style="float: left; padding-left: 5px;">
+						<a href="javascript:validateSubmit()" class="button coolblue"
+							title="Affinity Checker" id="friend_affinity_v"> Check
+							Affinity</a> <a style="display: none" title="Affinity Checker"
+							id="friend_affinity_inv" data-reveal-id="match_report"> Check
+							Affinity</a>
+
+						<div style="float: left; width: 250px; margin-top: -30px;">
+							<span id="affinity_check_error_holder"
+								style="font-family: Calibri; font-size: 16px; color: orangered; padding-top: 10px;">
+								Choose different individuals to check compatibility </span>
+						</div>
+					</div>
+					<a id="close_popup" class="close-reveal-modal">&#215;</a>
+				</form>
+			</div>
+		</div>
+
+		<div id="messages" class="reveal-modal">
+			<div id="whatsup" style="overflow-y: auto;"></div>
+			<a id="close_notifications" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<div id="aboutyou" class="reveal-modal medium">
+			<div id="intro">
+				<label id="greeting" style="font-family: Calibri; font-size: 14px;">
+					Welcome &nbsp;</label> <label id="me_name"
+					style="font-family: Calibri; font-size: 14px;"></label> <label
+					id="text" style="font-family: Calibri; font-size: 14px;">.
+					According to sunsign you are </label>
+
+				<div>
+					<img id="me_sign_logo" src="" />
+					<div style="float: right; padding-top: 50px;">
+						<a href="javascript:share()" class="button orange medium"
+							title="Post this to your facebook wall" id="btn_share"> Agree &amp; Share </a>
+					</div>
+				</div>
+
+				<div id="sunsign_info"
+					style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
+				</div>
+
+			</div>
+			<a id="aboutyouclose" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<div id="pair" style="display: none">
+			<div style="padding-left: 35%;">
+				<div style="margin-top: 10px;">
+					<label id="compatibility_score"
+						style="margin-left: 15%; font-family: Calibri; font-size: 14px; color: orangered;">Affinity
+						score </label>
+				</div>
+				<div style="margin-top: -20px;">
+					<label id="compatibility"
+						style="font-family: Calibri; font-size: 125px; color: #075698;"></label>
+				</div>
+			</div>
+
+			<div>
+				<div id="person1" style="padding: 10px 10px 10px 10px;">
+					<div style="height: 50px; width: 350px; padding-left: 175px;">
+						<img id="person1_photo" src=""> <label id="person1_name"
+							style="font-family: Calibri; font-size: 14px; color: #222; vertical-align: text-top;"></label>
+						<label id="is_a"
+							style="font-family: Calibri; font-size: 14px; color: #222; vertical-align: text-top;">&nbsp;is
+						</label> <label id="person1_sign"
+							style="font-family: Calibri; font-size: 14px; color: rgb(200, 50, 50); vertical-align: text-top;"></label>
+					</div>
+				</div>
+
+				<div id="person2" style="padding: 10px 10px 10px 10px;">
+					<div style="height: 50px; width: 350px; padding-left: 175px;">
+						<img id="person2_photo" src=""> <label id="person2_name"
+							style="font-family: Calibri; font-size: 14px; color: #222; vertical-align: text-top;"></label>
+						<label id="is_b"
+							style="font-family: Calibri; font-size: 14px; color: #222; vertical-align: text-top;">&nbsp;is</label>
+						<label id="person2_sign"
+							style="font-family: Calibri; font-size: 14px; color: rgb(200, 50, 50); vertical-align: text-top;"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="match_report" class="reveal-modal">
+			<div id="match">
+				<div id="wrapper">
+					<div class="row">
+						<div class="flipbox-container box100" style="display: table;">
+							<div id="flipbox1" class="flipbox"
+								style="display: table-cell; vertical-align: middle; padding: 5px;">
+							</div>
+						</div>
+
+						<ul id="action-btn">
+							<li><a class="btn" id="btn0" href="#">1</a></li>
+							<li><a class="btn" id="btn1" href="#">2</a></li>
+							<li><a class="btn" id="btn2" href="#">3</a></li>
+							<li><a class="btn" id="btn3" href="#">4</a></li>
+							<li><a class="btn" id="btn4" href="#">5</a></li>
+							<li><a class="button orange medium"
+								id="endorse_match_friend"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<a id="close_affinity_report" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<div id="data" style="display: none"></div>
+		<div id="endorsement_data" style="display: none"></div>
+		<div id="endorsed_by_me" style="display: none"></div>
+
+		<a href="" id="yoursigninfo" data-reveal-id="aboutyou"
+			style="display: none"> </a> <a href="#" id="affinitymatch"
+			data-reveal-id="match_report" style="display: none"> </a>
+
+
+		<div id="endorsement_badge" class="reveal-modal medium">
+			<img id="endorsed_by_profile_pic" src="">
+			<div id="endorsement_badge_show"></div>
+			<div style="text-align: center;">
+				<a id="endorse_back_orange_button" data-reveal-id="endorse_friend"
+					style="font-size: 12px; color: orangered; font-weight: bold; font-family: calibri; cursor: pointer;"
+					onclick=""> Take this opportunity to send a Badge back </a>
+			</div>
+			<a id="endorse_badge_close" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<a href="#" id="endorse_badge_open" data-reveal-id="endorsement_badge"
+			style="display: none"> </a>
+
+		<!-- endorsements -->
+		<div id="endorse_friend" class="reveal-modal xlarge">
+			<div style="width: 800px; font-family: Calibri;">
+				<div id="traits">
+					<div id="caption">
+						<span
+							style="font-family: Calibri; font-size: 16px; font-weight: bold; text-color: orange">
+							Do you think <span id="endorse_friend_name"></span> has the
+							following qualities? Don't miss an opportunity to award Badges
+							(Max 10).
+						</span>
+					</div>
+					<div id="traits_list">
+						<ul id="traits_box"
+							class="traits_box ui-helper-reset ui-helper-clearfix">
+						</ul>
+					</div>
+				</div>
+
+				<div id="endorse_box"
+					style="background: orange; font-family: Calibri;">
+					<div style="float: left; min-height: 20em;">
+						<img id="endorse_friend_photo" src="" style="border-radius: 2px;">
+					</div>
+				</div>
+				<div id="endorse_form_id" style="display: none"></div>
+				<div id="endorse_form_button">
+					<span id="endorse_error_holder"
+						style="font-family: Calibri; font-size: 14px; color: orangered;">
+						Please choose qualities of your friend to Badge. </span> <span
+						id="endorse_history_holder"
+						style="font-family: Calibri; font-size: 14px; color: orangered;">
+					</span> <a id="endorse_orange_button" class="button orange medium"
+						href="javascript:save_endorsement()"> Badge</a>
+				</div>
+			</div>
+			<a id="endorse_form_close" class="close-reveal-modal">&#215;</a>
+		</div>
+		<!-- endorsements end -->
+		<a href="#" id="dob_error_open" data-reveal-id="dob_error"
+			style="display: none"> </a>
+
+		<div id="dob_error" class="reveal-modal medium">
+			<div style="text-align: center;">
+				<span
+					style="font-size: 14px; color: red; font-weight: bold; font-family: calibri;">
+					Please update your date of birth in facebook which is required for
+					Affinity to calculate friendship compatibility. </span>
+			</div>
+			<a id="dob_error_close" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<a href="#" id="sunsign_card_open" data-reveal-id="sunsign_card"
+			style="display: none"> </a>
+
+		<div id="sunsign_card" class="reveal-modal small">
+			<!-- <img id="sign_icon" src=""> -->
+			<div id="sunsign_card_content"
+				style="font-family: Calibri; font-size: 14px;"></div>
+			<a id="sunsign_card_close" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<a href="#" id="badges_for_friend_open"
+			data-reveal-id="count_friend_badges" style="display: none"> </a>
+
+		<div id="count_friend_badges" class="reveal-modal small">
+			<div id="badge_loading">Loading badges..</div>
+
+			<div id="badges_content"></div>
+			<a id="badges_for_friend_close" class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<!-- end inner content -->
+	</div>
+
+	<script type="text/javascript">
+
+	function popup() {
+		document.getElementById('friend_pic1').innerHTML = '<img src="images/anonymous.gif">';
+		document.getElementById('friend_pic2').innerHTML = '<img src="images/anonymous.gif">';
+		document.getElementById('friends_combo1').innerHTML = '';
+		document.getElementById('friends_combo2').innerHTML = '';
+		
+		document.getElementById('friends_combo1').innerHTML = res1;
+	    document.getElementById('friends_combo2').innerHTML = res2;
+	    
+	    $('#affinity_check_error_holder').hide();
+	    $('#affinity_check_popup').show();
+	    
+	}
+	
+	function fireClick(elem) {
+	  if(!elem) return;
+	
+	  if(document.dispatchEvent) {   // W3C
+	    var oEvent = document.createEvent( "MouseEvents" );
+	    oEvent.initMouseEvent("click", true, true, window, 1, 1, 1, 1, 1, false, false, false, false, 0, elem);
+	    elem.dispatchEvent(oEvent);
+	  }
+	  else if(document.fireEvent) {   // IE
+	    elem.click();
+	  }    
+	}
+	
+	$( "#notifications" ).click(function() {
+  		$("#count")[0].click();
+	});
+
+   $(document).ready(function () {
+ 	  //Cache FB SDK
+ 	  //log.info ("Inside page document ready");
+	  $.ajaxSetup({ cache: true });
+	  //load data file
+	  $("#data").load("data.html" );
+	
+	  //screen width  
+	  var screenwidth = $(document).width();
+	  var boxwidth = 200 ;
+	  var numboxes = Math.floor(screenwidth/boxwidth);
+	  var boxspace = (numboxes * 200) + (numboxes * 10) ;
+	  var empty = screenwidth - boxspace ; 
+	  if(empty < 20 ) {
+	  	 numboxes = numboxes - 1;
+	  	 boxspace = (numboxes * 200) + (numboxes * 10) ;
+	  	 empty = screenwidth - boxspace ; 
+	  }
+	  var leftmargin = empty / 2 ;
+	  var rightmargin = leftmargin - 10;
+	  
+	  $('#friendsListHolder').css({"margin-left":leftmargin , "margin-right":rightmargin, "width": boxspace});
+	  
+   });
+   
+   
+   $(function(){
+		$("#btn0").on("click",function(e){
+			var scorehtml = document.getElementById('pair').innerHTML;
+		
+		    $(".flipbox").flippy({
+		        color_target: "#FFFFFF", 
+		        direction: "bottom",
+		        duration: "750",
+		        verso :  scorehtml,
+		    });
+		    
+		    $("#btn0").css({"background": "red"});
+		    $("#btn1").css({"background": "#075698"});    
+			$("#btn2").css({"background": "#075698"});
+			$("#btn3").css({"background": "#075698"});
+			$("#btn4").css({"background": "#075698"});
+			$("#btn5").css({"background": "#075698"});
+	    	
+	        e.preventDefault();
+	    });
+
+
+	    $("#btn1").on("click",function(e){
+	    	var affinity_div = signs2match[0] + "_" + signs2match[1] +"_1";
+	    	var divHtml = document.getElementById(''+ affinity_div+ '').innerHTML;
+	
+	    	$(".flipbox").flippy({
+	            color_target: "#03588C", 
+	            direction: "bottom",
+	            duration: "750",
+	            verso :  divHtml,
+	         });
+	        
+	    	$("#btn1").css({"background": "red"});
+	    	$("#btn0").css({"background": "#075698"});
+	    	$("#btn2").css({"background": "#075698"});
+	    	$("#btn3").css({"background": "#075698"});
+	    	$("#btn4").css({"background": "#075698"});
+	    	$("#btn5").css({"background": "#075698"});
+	    	
+	    	
+	        e.preventDefault();
+	    });
+	        
+	    $("#btn2").on("click",function(e){
+	    	var affinity_div = signs2match[0] + "_" + signs2match[1] +"_2";
+	    	var divHtml = document.getElementById(''+ affinity_div+ '').innerHTML;
+	
+	        $(".flipbox").flippy({
+	            color_target: "#03588C",
+	            direction: "left",
+	            duration: "750",
+	            verso: divHtml,
+	         });
+	         $("#btn2").css({"background": "red"});
+	         $("#btn0").css({"background": "#075698"});
+	     	 $("#btn1").css({"background": "#075698"});
+	    	 $("#btn3").css({"background": "#075698"});
+	    	 $("#btn4").css({"background": "#075698"});
+	    	 $("#btn5").css({"background": "#075698"});
+	
+	         e.preventDefault();
+	    });
+	    
+	    $("#btn3").on("click",function(e){
+	    	var affinity_div = signs2match[0] + "_" + signs2match[1] +"_3";
+	    	var divHtml = document.getElementById(''+ affinity_div+ '').innerHTML;
+	
+	    	$(".flipbox").flippy({
+	            color_target: "#03588C",
+	            direction: "right",
+	            duration: "750",
+	            verso: divHtml,
+	         });
+	    	 $("#btn3").css({"background": "red"});
+	    	 $("#btn0").css({"background": "#075698"});
+	     	 $("#btn1").css({"background": "#075698"});
+	    	 $("#btn2").css({"background": "#075698"});
+	    	 $("#btn4").css({"background": "#075698"});
+	    	 $("#btn5").css({"background": "#075698"});
+	
+	         e.preventDefault();
+	    });
+	    
+	    $("#btn4").on("click",function(e){
+	    	var affinity_div = signs2match[0] + "_" + signs2match[1] +"_4";
+	    	var divHtml = document.getElementById(''+ affinity_div+ '').innerHTML;
+	   	
+	        $(".flipbox").flippy({
+	            color_target: "#03588C",
+	            direction: "top",
+	            duration: "750",
+	            verso: divHtml,
+	         });
+	
+	        $("#btn4").css({"background": "red"});
+	        $("#btn0").css({"background": "#075698"});
+	    	$("#btn1").css({"background": "#075698"});
+	    	$("#btn2").css({"background": "#075698"});
+	    	$("#btn3").css({"background": "#075698"});
+	    	$("#btn5").css({"background": "#075698"});
+	
+	         e.preventDefault();
+	    });
+	    
+	});
+      
+</script>
+
+</body>
+</html>
